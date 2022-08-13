@@ -1,0 +1,17 @@
+#!/bin/sh
+
+
+if [ -z "$1" ]; then
+    echo "Necesario especificar um nome de pacote para ser instalado."
+    exit 1
+fi
+
+if [ "$USER" != "root" ]; then
+    echo "Necessario usuario root para instalar o pacote $1"
+    exit 2
+fi
+apt update && \
+apt -y --no-install-recommends install $1 && \
+echo "$1 instalado com sucesso"
+
+exit 0
